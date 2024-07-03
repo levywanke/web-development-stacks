@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Define the descriptions for each technology
+declare -A tech_descriptions
+tech_descriptions=(
+  ["rails"]="# Ruby on Rails\n\n## Overview\nRuby on Rails, often simply Rails, is a server-side web application framework written in Ruby under the MIT License. It is a model-view-controller (MVC) framework that provides structures for a database, a web service, and web pages.\n\n## Features\n- **Convention over Configuration**: Emphasizes sensible defaults over explicit configuration, reducing complexity.\n- **Active Record**: An ORM (Object-Relational Mapping) that enables developers to interact with databases using Ruby code.\n- **RESTful APIs**: Supports building APIs quickly and easily using RESTful principles.\n\n## Use Cases\nRuby on Rails is used for building scalable web applications, APIs, and prototypes. It's known for its productivity and ease of use, making it popular among startups and enterprises alike."
+  
+  ["ruby"]="# Ruby\n\n## Overview\nRuby is a dynamic, interpreted, high-level programming language known for its simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.\n\n## Features\n- **Object-Oriented**: Everything in Ruby is an object, making it easy to manipulate and organize data.\n- **Flexible Syntax**: Ruby's syntax allows developers to write code that is both concise and readable.\n- **Rich Standard Library**: Provides a vast array of libraries and gems for various functionalities.\n\n## Use Cases\nRuby is used for web development, scripting, automation, and prototyping. It is especially favored for building web applications using frameworks like Ruby on Rails."
+)
+
+# Create README.md files in each existing directory
+for tech in "${!tech_descriptions[@]}"; do
+  if [ -d "$tech" ]; then
+    echo -e "${tech_descriptions[$tech]}" > "$tech/README.md"
+  else
+    echo "Directory '$tech' not found"
+  fi
+done
+
+echo "README.md files have been created in the specified directories."
